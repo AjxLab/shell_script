@@ -2,13 +2,16 @@
 
 function ask_yes_no {
   while true; do
-    echo -n "$* [y/n]: "
-    read ANS
+    read -t 60 -p "$* [y/n]: " ANS
+
     case $ANS in
       [Yy]*)
         return 0
         ;;
       [Nn]*)
+        return 1
+        ;;
+      "")
         return 1
         ;;
       *)
